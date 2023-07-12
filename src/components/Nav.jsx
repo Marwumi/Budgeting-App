@@ -9,10 +9,11 @@ const Nav = ({ userName }) => {
         <img src={logomark} alt="logo" height={30} />
         <span>Home Budget</span>
       </NavLink>
-      {/* {userName && ( */}
+      {
+      userName && (
         <Form
          method="post"
-         action="/logout"
+         action="logout"
          onSubmit={(event) => {
           if (!confirm("Delete user and all data?")){
             event.preventDefault()
@@ -24,7 +25,7 @@ const Nav = ({ userName }) => {
             <TrashIcon width={20} />
           </button>
         </Form>
-      {/* )} */}
+       )} 
     </nav>
   );
 };
