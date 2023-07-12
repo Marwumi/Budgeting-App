@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { fetchData } from "../helpers";
+import { createBudget, fetchData, waait } from "../helpers";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
@@ -10,6 +10,9 @@ export function dashboardLoader() {
   return { userName, budgets };
 }
 export async function dashboardAction({ request }) {
+
+await waait();
+
   const data = await request.formData();
   // const userName = data.get("userName");
   const {_action, ...values}= Object.fromEntries(data);
@@ -22,6 +25,19 @@ export async function dashboardAction({ request }) {
       return toast.success(`Welcome , ${values.userName}`);
     } catch (e) {
       throw new Error("There was a problem creating your account.");
+    }
+  }
+
+  if (_action === "createBudget") {
+    try {
+      createBudget({
+        name: values.newBudget,
+        amount: values.newBudgetAmount,
+      })
+      // throw new Error("There is an issue.");
+      return toast.success("Budget Created");
+    } catch (e) {
+      throw new Error("There was a problem creating your budget.");
     }
   }
  
