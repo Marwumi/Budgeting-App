@@ -7,6 +7,7 @@ import Main, { mainLoader} from "./Layouts/Main";
 // import { logoutAction } from "./actions/Logout";
 
 import { logoutAction } from "./actions/logout";
+import { deleteBudget } from "./actions/deleteBudget";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,9 +38,16 @@ const router = createBrowserRouter([
         element: <BudgetPage />,
         loader: budgetLoader,
         action: budgetAction,
-        errorElement: <Error />
+        errorElement: <Error />,
 
         // action: expensesAction,
+        children: [
+          {
+            path: "delete",
+            action: deleteBudget,
+
+          }
+        ]
      
       },
       {
