@@ -85,12 +85,25 @@ export const calculateSpentByBudget = (budgetId) => {
   // }
 
   // format currency
+  // export const formatCurrency = (amt) => {
+  //   return amt.toLocaleString(undefined, {
+  //     style: "currency",
+  //     currency: 'USD',
+  //   })
+  // }
+
   export const formatCurrency = (amt) => {
-    return amt.toLocaleString(undefined, {
-      style: "currency",
-      currency: 'USD',
-    })
-  }
+    // Define a custom symbol for Naira (₦)
+    const nairaSymbol = "₦";
+  
+    // Convert the amount to a number with 2 decimal places
+    const formattedAmount = parseFloat(amt).toFixed(2);
+  
+    // Add the Naira symbol to the formatted amount
+    return `${nairaSymbol}${formattedAmount}`;
+  };
+  
+
 
   // format percentage
   export const formatPercentage = (amt) => {
